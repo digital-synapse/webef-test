@@ -11,19 +11,6 @@ System.config({
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
   },
-
-  packages: {
-    "app": {
-      "main": "main",
-      "defaultExtension": "ts",
-      "meta": {
-        "*.ts": {
-          "loader": "ts"
-        }
-      }
-    }
-  },
-
   map: {
     "babel": "npm:babel-core@5.8.25",
     "babel-runtime": "npm:babel-runtime@5.8.25",
@@ -31,10 +18,6 @@ System.config({
     "opsuite/webef": "github:opsuite/webef@master",
     "ts": "github:frankwallis/plugin-typescript@2.0.17",
     "typescript": "npm:typescript@1.6.2",
-    "webef": "github:opsuite/webef@master",
-    "github:frankwallis/plugin-typescript@2.0.17": {
-      "typescript": "npm:typescript@1.6.2"
-    },
     "github:jspm/nodelibs-process@0.1.1": {
       "process": "npm:process@0.10.1"
     },

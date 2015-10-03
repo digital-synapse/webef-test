@@ -1,8 +1,7 @@
 {
-  "name": "lovefield-test",
+  "name": "webef-test",
   "version": "1.0.0",
   "description": "",
-  "main": "app/ef.js",
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.9.3",
@@ -10,21 +9,13 @@
     "gulp-tsd": "0.0.4",
     "gulp-typescript": "^2.8.2",
     "jspm": "^0.16.11",
-    "jspm-bower": "0.0.3",
     "merge2": "^0.3.6",
     "webef-cli": "^0.1.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "author": "digital synapse",
+  "license": "MIT",
   "jspm": {
-    "directories": {
-      "lib": "app"
-    },
     "dependencies": {
-      "ts": "github:frankwallis/plugin-typescript@^2.0.17",
       "webef": "github:opsuite/webef@master"
     },
     "devDependencies": {

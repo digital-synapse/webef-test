@@ -2,7 +2,7 @@
 
 ///<reference path="../jspm_packages/github/opsuite/webef@master/dist/ef.d.ts" />
 import "opsuite/webef";
-WebEF.DBSchema.create('./schema.json');
+WebEF.DBSchema.create('db',1, {"item":{"id":"pkey, index","description":"string, null","deadline":"date","done":"boolean","userId":"fkey: user.id","user":"nav->user: item.userId","tasks":"nav->task: task.itemId","_ix":"dbtimestamp, index","_rm":"isdeleted, index"},"task":{"id":"pkey, index","itemId":"fkey:item.id","description":"string","done":"boolean","_ix":"dbtimestamp, index","_rm":"isdeleted, index"},"user":{"id":"pkey, index","name":"string","_ix":"dbtimestamp, index","_rm":"isdeleted, index"}});
 
 export interface Item {
 	id?: number;
@@ -79,7 +79,7 @@ export interface DBMasterContext {
 }
 
 export class DBContext extends WebEF.DBContext<DBMasterContext> {
-	constructor(){super('db', lf.schema.DataStoreType.WEB_SQL)}
+	constructor(){super('db', lf.schema.DataStoreType.INDEXED_DB)}
 	public item = this.DBEntity<Item, ItemContext, ItemTable>('item', ["user","task"]);
 	public task = this.DBEntity<Task, TaskContext, TaskTable>('task', []);
 	public user = this.DBEntity<User, UserContext, UserTable>('user', []);

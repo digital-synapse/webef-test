@@ -16,7 +16,7 @@
   "license": "MIT",
   "jspm": {
     "dependencies": {
-      "webef": "github:opsuite/webef@master"
+      "opsuite/webef": "github:opsuite/webef@master"
     },
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",

@@ -1,4 +1,7 @@
+
+// import system.js to allow module loading system in web worker
+console.log('worker loading...');
 importScripts('jspm_packages/system.js');
 importScripts('config.js');
-
-System.import('webef-test');
+//importScripts('./webef-worker.js');
+System.import('./data/worker/webef-worker');

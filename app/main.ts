@@ -1,5 +1,5 @@
 
 
-var worker = new Worker('worker.js');
+//var worker = new Worker('worker.js');
 
 import './webef-test';

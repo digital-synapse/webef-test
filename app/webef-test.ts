@@ -38,24 +38,24 @@ function doTests(){
 	var debug={};
 	
 	var starttime = Date.now();
-	db.item.put(entities).then(id=>{
+	db.item.put(entities).then(entities=>{
 		
 		var elapsed = Date.now() - starttime;
-		debug['put (cascade insert)'] = {'Entities Returned': id.length, 'Test Time (ms)': elapsed};
+		debug['put (cascade insert)'] = {'Entities Returned': entities.length, 'Test Time (ms)': elapsed};
 		//console.log(id);
 
 		for (var i=0; i<entities.length; i++){
 			entities[i].description = 'Drink coffee';
 		}		
 		starttime = Date.now();
-		db.item.put(entities).then((id)=>{
+		db.item.put(entities).then((entities)=>{
 			
 			var elapsed = Date.now() - starttime;
-			debug['put (cascade update)'] = {'Entities Returned':id.length, 'Test Time (ms)': elapsed};
+			debug['put (cascade update)'] = {'Entities Returned':entities.length, 'Test Time (ms)': elapsed};
 			//console.log(id);
 						
 			starttime = Date.now();
-			db.item.get(id).then((result)=>{
+			db.item.get().then((result)=>{
 				
 				var elapsed = Date.now() - starttime;
 				debug['get (cascade select)'] = {'Entities Returned':result.length, 'Test Time (ms)':elapsed};	

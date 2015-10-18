@@ -16,11 +16,15 @@ export class DBContext {
 		return DBContext._instance;
 	}	
 	
+	public ready: Promise<any>;
 	public item: IEntity<EntityType.Item>;
 	public user: IEntity<EntityType.User>;
 	public task: IEntity<EntityType.Task>;
 	
 	private init() {
+		var db = DataDomain.getInstance();
+		this.ready = db.ready;
+		 
 		this.item = new Entity('item');
 		this.user = new Entity('user');
 		this.task = new Entity('task');

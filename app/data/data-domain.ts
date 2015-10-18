@@ -17,11 +17,29 @@ export class DataDomain {
 	/* Init web worker */
 	private worker:Worker;
 	private callCounter:number;
+	private readyState:boolean;
+	public ready: Promise<any>;
+	private readyResolve;
 	private init(){
+		this.ready = new Promise((resolve,reject)=>{
+			this.readyResolve = resolve;
+		});
+		this.readyState = false;
 		this.worker = new Worker('worker.js');
 		this.callCounter = 0;
 		this.worker.onmessage =(e) => {	
-			console.log('response received');							
+			
+			if (e.data === WebEFEvent.READY){
+				this.readyState = true;
+				this.readyResolve();
+								
+				// fire messages from queue
+				for (var i=0; i<this.messageQueue.length; i++){
+					this.messageQueue[i][0](this.messageQueue[i][1])
+				}	
+				this.messageQueue=null;
+			}
+								
 			var event = <WebEFEvent.Response>e.data;
 			var promise = this.promiseQueue[event.originId];
 			if (promise) {
@@ -37,6 +55,7 @@ export class DataDomain {
 		return this.callCounter;
 	}
 	private promiseQueue = {};
+	private messageQueue = [];
 	
 	public call(entityOpCmd: string, entity:string, args: any) : Promise<any> {
 		
@@ -55,8 +74,17 @@ export class DataDomain {
 				reject: reject
 			};	
 			
+			
+			// if the worker is not yet ready queue up the message
+			if (!this.readyState){
+				this.messageQueue.push([
+					(request)=>{this.worker.postMessage(JSON2.stringify(request));},
+					request
+				]);
+			}
 			// send request to worker
-			this.worker.postMessage(JSON2.stringify(request));
+			else
+				this.worker.postMessage(JSON2.stringify(request));
 			
 		});		
 	}

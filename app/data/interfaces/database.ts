@@ -2,8 +2,8 @@
 export interface map {}
 
 export interface IEntity<T> {
-	put(entity: T): Promise<number>;
-	put(entities: T[]): Promise<number[]>;
+	put(entity: T): Promise<T>;
+	put(entities: T[]): Promise<T[]>;
 	get(id: number): Promise<T>;
 	get(id?: number[]): Promise<T[]>;
 	delete(id: number): Promise<T>;

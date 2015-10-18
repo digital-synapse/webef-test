@@ -8,6 +8,7 @@ export class EntityOp {
     public static SEARCH = 'search';
 }
 export const Name = "WebEF";
+export const READY = "ready";
 
 export interface Response {
 	originId: number;

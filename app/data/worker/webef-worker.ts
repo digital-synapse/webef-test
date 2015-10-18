@@ -15,15 +15,16 @@ if (!ENVIRONMENT_IS_WORKER)
     
 const WebEFSearchPageSize = 25;
 var db: DBContext =new DBContext();	 
-
-console.log('worker loaded!');
+db.ready.then(()=> {   
+    postMessage(WebEFEvent.READY);    
+});
 
 self.onmessage = function(e) {
     
-    console.log('message received!');
+    //console.log('message received!');
     
     var args = JSON2.parse(e['data']);    
-	db.ready.then(()=> {
+	db.ready.then(()=> {       
         
         var entity: WebEF.DBEntity<any,any,any> = db[args.entity] ;
         switch (args.cmd) {	

@@ -4,7 +4,7 @@
 import "opsuite/webef";
 WebEF.DBSchema.create('db',1, {"item":{"id":"pkey","description":"string, null","deadline":"date","done":"boolean","userId":"fkey: user.id","user":"nav->user: item.userId","tasks":"nav->task: task.itemId","_ix":"dbtimestamp, index","_rm":"isdeleted, index"},"task":{"id":"pkey","itemId":"fkey:item.id","description":"string","done":"boolean","_ix":"dbtimestamp, index","_rm":"isdeleted, index"},"user":{"id":"pkey","name":"string","_ix":"dbtimestamp, index","_rm":"isdeleted, index"}});
 
-import * as Entity from '../interfaces/entities';
+import * as Entity from '../entities';
 
 export interface ItemTable extends lf.schema.Table {
 	id?: lf.schema.Column;

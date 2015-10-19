@@ -1,7 +1,20 @@
 
-import {DataDomain, Entity} from './data-domain';
-import {IEntity} from './interfaces/database';
-import * as EntityType from './interfaces/entities';
+import {DataDomain, Entity} from './worker/data-domain';
+import * as EntityType from './entities';
+
+export interface map {}
+export interface IEntity<T> {
+	put(entity: T): Promise<T>;
+	put(entities: T[]): Promise<T[]>;
+	get(id: number): Promise<T>;
+	get(id?: number[]): Promise<T[]>;
+	delete(id: number): Promise<T>;
+	delete(id?: number[]): Promise<T[]>;
+	query(filters: map): Promise<T[]>;
+	count(filters: map): Promise<number>;
+	select(filters: map): Promise<T[]>;
+	search(filters: map): Promise<T[]>;
+}
 
 export class DBContext {
 	/*** Singleton pattern ***/

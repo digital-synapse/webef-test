@@ -1,7 +1,6 @@
 
-import './data/all';
 import {DBContext} from './data/dbcontext';
-import * as Entity from './data/interfaces/entities';
+import * as Entity from './data/entities';
 
 
 var db: DBContext= DBContext.getInstance();

@@ -1,5 +1,5 @@
 import {DBContext} from './dbcontext';
-import * as Entity from '../interfaces/entities';
+import * as Entity from '../entities';
 import {is} from '../util/is';
 import {JSON2} from '../util/json2';
 import * as WebEFEvent from './webef-event';

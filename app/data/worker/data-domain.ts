@@ -1,5 +1,5 @@
-import * as WebEFEvent from './worker/webef-event';
-import {JSON2} from './util/json2';
+import * as WebEFEvent from './webef-event';
+import {JSON2} from '../util/json2';
 
 export class DataDomain {
 	/*** Singleton pattern ***/

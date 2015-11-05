@@ -13,9 +13,9 @@ System.config({
   },
 
   map: {
-    "babel": "npm:babel-core@5.8.25",
-    "babel-runtime": "npm:babel-runtime@5.8.25",
-    "core-js": "npm:core-js@1.2.1",
+    "babel": "npm:babel-core@5.8.33",
+    "babel-runtime": "npm:babel-runtime@5.8.29",
+    "core-js": "npm:core-js@1.2.5",
     "opsuite/webef": "github:opsuite/webef@master",
     "ts": "github:frankwallis/plugin-typescript@2.0.17",
     "typescript": "npm:typescript@1.6.2",
@@ -44,7 +44,7 @@ System.config({
       "util": "npm:util@0.10.3"
     },
     "github:opsuite/webef@master": {
-      "lovefield": "npm:lovefield@2.0.65"
+      "lovefield": "npm:lovefield@2.1.1"
     },
     "npm:abbrev@1.0.7": {
       "assert": "github:jspm/nodelibs-assert@0.1.0",
@@ -62,7 +62,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.8.25": {
+    "npm:babel-runtime@5.8.29": {
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:buffer@3.5.1": {
@@ -70,8 +70,9 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "is-array": "npm:is-array@1.0.1"
     },
-    "npm:core-js@1.2.1": {
+    "npm:core-js@1.2.5": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
@@ -94,7 +95,7 @@ System.config({
       "systemjs-json": "github:systemjs/plugin-json@0.1.0",
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:lovefield@2.0.65": {
+    "npm:lovefield@2.1.1": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "js-yaml": "npm:js-yaml@3.1.0",
       "nopt": "npm:nopt@2.2.1",

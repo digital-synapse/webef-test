@@ -2,17 +2,21 @@
 
 import {DBContext} from './data/dbcontext';
 import {speedTest} from './test/speed-test';
+import {entityCompositionTest} from './test/entity-composition-test';
 
-
-var db = new DBContext();
-
-db.ready.then(()=>{
-		
+(function(){
+	
 	// empty all tables before starting tests
-	db.purge().then(()=>{
-		
+	var db = new DBContext();
+	db.ready.then(()=>{		
+		return db.purge();
+	
+	}).then(()=>{
 		return speedTest(db);
+	
+	}).then(()=>{
+		return entityCompositionTest(db);
 	});
 		
-});
+})();	
 

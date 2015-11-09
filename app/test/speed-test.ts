@@ -73,6 +73,7 @@ export function speedTest(db: DBContext) : Promise<any>{
 						debug['delete (cascade update)'] = {'Entities Returned':NaN, 'Test Time (ms)':elapsed};	
 					
 						console['table'](debug);
+						console.log('\n');
 						
 						done();
 

@@ -19,6 +19,15 @@
 			"description": "string",
 			"done": "boolean",
 			"_ix": "dbtimestamp, index",
+			"_rm": "isdeleted, index",
+			"subTasks": "nav->subTask: subTask.taskId"
+		},
+		"subTask": {
+			"id": "pkey",
+			"taskId": "fkey:task.id",
+			"description": "string",
+			"done": "boolean",
+			"_ix": "dbtimestamp, index",
 			"_rm": "isdeleted, index"
 		},
 		"user": {

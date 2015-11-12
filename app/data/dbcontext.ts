@@ -2,7 +2,42 @@
 
 ///<reference path="../../jspm_packages/github/opsuite/webef@master/dist/ef.d.ts" />
 import "opsuite/webef";
-WebEF.DBSchema.create('db',1, {"item":{"id":"pkey, index","description":"string, null","deadline":"date","done":"boolean","userId":"fkey: user.id","user":"nav->user: item.userId","tasks":"nav->task: task.itemId","_ix":"dbtimestamp, index","_rm":"isdeleted, index"},"task":{"id":"pkey, index","itemId":"fkey:item.id","description":"string","done":"boolean","_ix":"dbtimestamp, index","_rm":"isdeleted, index"},"user":{"id":"pkey, index","name":"string","_ix":"dbtimestamp, index","_rm":"isdeleted, index"}});
+WebEF.DBSchema.create('db',1, {
+		"item": {
+			"id": "pkey, index",
+			"description": "string, null",
+			"deadline": "date",
+			"done": "boolean",
+			"userId": "fkey: user.id",
+			"user":"nav->user: item.userId",
+			"tasks":"nav->task: task.itemId",
+			"_ix": "dbtimestamp, index",
+			"_rm": "isdeleted, index"
+		},
+		"task": {
+			"id": "pkey, index",
+			"itemId": "fkey:item.id",
+			"description": "string",
+			"done": "boolean",
+			"_ix": "dbtimestamp, index",
+			"_rm": "isdeleted, index",
+			"subTasks": "nav->subTask: subTask.taskId"
+		},
+		"subTask": {
+			"id": "pkey",
+			"taskId": "fkey:task.id",
+			"description": "string",
+			"done": "boolean",
+			"_ix": "dbtimestamp, index",
+			"_rm": "isdeleted, index"
+		},
+		"user": {
+			"id": "pkey, index",
+			"name": "string",
+			"_ix": "dbtimestamp, index",
+			"_rm": "isdeleted, index"		
+		}
+	});
 
 export interface Item {
 	id?: number;
@@ -39,6 +74,7 @@ export interface Task {
 	done: boolean;
 	_ix?: number;
 	_rm?: boolean;
+	subTasks?: SubTask[];
 }
 
 export interface TaskTable extends lf.schema.Table {
@@ -52,6 +88,28 @@ export interface TaskTable extends lf.schema.Table {
 
 export interface TaskContext {
 	task?: TaskTable;
+}
+
+export interface SubTask {
+	id?: number;
+	taskId?: number;
+	description: string;
+	done: boolean;
+	_ix?: number;
+	_rm?: boolean;
+}
+
+export interface SubTaskTable extends lf.schema.Table {
+	id?: lf.schema.Column;
+	taskId?: lf.schema.Column;
+	description: lf.schema.Column;
+	done: lf.schema.Column;
+	_ix?: lf.schema.Column;
+	_rm?: lf.schema.Column;
+}
+
+export interface SubTaskContext {
+	subTask?: SubTaskTable;
 }
 
 export interface User {
@@ -80,8 +138,9 @@ export interface DBMasterContext {
 
 export class DBContext extends WebEF.DBContext<DBMasterContext> {
 	constructor(){super('db', lf.schema.DataStoreType.INDEXED_DB)}
-	public item = this.DBEntity<Item, ItemContext, ItemTable>('item', ["user","task"]);
-	public task = this.DBEntity<Task, TaskContext, TaskTable>('task', []);
+	public item = this.DBEntity<Item, ItemContext, ItemTable>('item', ["user","task","subTask"]);
+	public task = this.DBEntity<Task, TaskContext, TaskTable>('task', ["subTask"]);
+	public subTask = this.DBEntity<SubTask, SubTaskContext, SubTaskTable>('subTask', []);
 	public user = this.DBEntity<User, UserContext, UserTable>('user', []);
 }
 

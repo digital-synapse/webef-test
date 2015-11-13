@@ -11,13 +11,12 @@ import {entityCompositionTest} from './test/entity-composition-test';
 	db.ready.then(()=>{		
 		return db.purge();
 	
-	/*
 	}).then(()=>{
 		return speedTest(db);
 	
 	}).then(()=>{
 		return partialEntityTest(db);
-	*/
+
 	}).then(()=>{
 		return entityCompositionTest(db);
 	});
